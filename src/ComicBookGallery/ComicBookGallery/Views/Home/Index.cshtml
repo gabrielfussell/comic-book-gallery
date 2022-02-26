@@ -5,18 +5,20 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">HEY NERDS</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@ViewBag.Title</h1>
 </div>
 
 <div class="row">
     @foreach (var comicBook in Model)
     {
         <div class="col-md-3">
-        <h4>@comicBook.DisplayText</h4>
-        <img src="/Images/@comicBook.CoverImageFileName" 
-            alt="@comicBook.DisplayText" 
-            class="img-responsive" />
+        <h4>@Html.ActionLink(comicBook.DisplayText, "Detail", "ComicBooks",
+            new { id = comicBook.Id })</h4>
+            <a href="@Url.Action("Detail", "ComicBooks", new { id = comicBook.Id })">
+                <img src="/Images/@comicBook.CoverImageFileName" 
+                alt="@comicBook.DisplayText" 
+                class="img-responsive" />
+            </a>
         </div>
     }
     
